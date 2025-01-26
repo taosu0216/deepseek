@@ -19,16 +19,20 @@ func (c *Client) CreateChatCompletionStream(
 	request ChatCompletionRequest,
 ) (*StreamReader, error) {
 	request.Stream = true
-	//request.ToolChoice = ToolChoice{
-	//	Type:     deepseek.ChatCompletionToolTypeFunc,
-	//	Function: nil,
-	//}
+
+	url := ""
+	if c.baseUrl != "" {
+		url = c.baseUrl
+	} else {
+		url = baseURL
+	}
+
 	body, err := json.Marshal(request)
 	if err != nil {
 		return nil, err
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", baseURL, bytes.NewReader(body))
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
 	}

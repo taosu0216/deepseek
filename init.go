@@ -20,6 +20,7 @@ func NewClient(apiKey string) *Client {
 	}
 }
 
-func (c *Client) WithBaseUrl(url string) {
+func (c *Client) WithBaseUrl(url string) *Client {
 	c.baseUrl = url
+	return c
 }
