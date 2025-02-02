@@ -63,6 +63,10 @@ type Delta struct {
 	Role             string `json:"role"`
 	Content          string `json:"content"`
 	ReasoningContent string `json:"reasoning_content"`
+ Name string `json:"name,omitempty"`
+
+ ToolCalls  []*ToolCall `json:"tool_calls,omitempty"`
+ ToolCallID string      `json:"tool_call_id,omitempty"`
 }
 
 type ToolCall struct {
